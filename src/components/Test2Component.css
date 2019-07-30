@@ -1,0 +1,38 @@
+.container {
+    height: 650px;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+.controls {
+    /* position: relative; */
+    /* top: -200px; */
+}
+.basketball-hoop {
+    height: 200px;
+    /* position: relative; */
+    /* top: -200px; */
+}
+
+.basket-object {
+    height: 250px;
+    cursor: pointer;
+}
+
+.controls button {
+    background-color: #bf0a53;
+    color: #fff;
+    padding: 10px;
+    min-width: 100px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    margin: 20px 7px;
+}
+
+.controls button:hover,
+.controls button:active,
+.controls button:focus {
+	background-color: #88ce02;
+}
