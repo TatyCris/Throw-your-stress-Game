@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
-// import { Tween, Timeline } from 'react-gsap';
+import { 
+    // Tween, Timeline, 
+    TweenLite } from 'gsap/all';
 
 export default class TestComponent extends Component {
+    constructor(props) {
+        super(props)
+        this.test = React.createRef()
+    }
+
+    
     // TweenComponent = () => (
     //     <Tween from={{ x: '100px', rotation: -360 }}>
     //         <div>This element gets tweened</div>
@@ -19,12 +27,19 @@ export default class TestComponent extends Component {
     //     </Timeline>
     // );
 
+    test = React.createRef()
+    tween = null
+
+    componentDidMount() {
+        this.tween = TweenLite.to(this.test, 1, {x: 100, y: 100})
+    }
+
     render() {
         return (
-            <div>
+            <div ref={div => this.test = div}>
                 {/* {this.TimelineComponent}
                 {this.TweenComponent} */}
-                hi
+                hola mi amor
             </div>
         )
     }
