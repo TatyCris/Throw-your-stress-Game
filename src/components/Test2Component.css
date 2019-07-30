@@ -16,8 +16,9 @@
 }
 
 .basket-object {
-    height: 250px;
+    /* width: 50px; */
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .controls button {
@@ -35,4 +36,9 @@
 .controls button:active,
 .controls button:focus {
 	background-color: #88ce02;
+}
+
+.container .bottom {
+    width: 400px;
+    margin: 0 auto;
 }

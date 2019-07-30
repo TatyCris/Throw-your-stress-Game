@@ -15,8 +15,8 @@ export default class Test2Component extends Component {
     componentDidMount() {
         const target = this.hoopContainer.getBoundingClientRect() 
         const object = this.object.getBoundingClientRect()
-        const targetCenterTop = target.top - target.height/2
-        const objectCenterTop = object.top - object.height/2
+        const targetCenterTop = target.top + target.height/2
+        const objectCenterTop = object.top + object.height/2
         const targetCenterY = targetCenterTop - objectCenterTop
 
         this.tl
@@ -27,13 +27,12 @@ export default class Test2Component extends Component {
                 },
                 {
                     x: 200,
-                    delay: 0.3,
                     repeatDelay: 0,
                     repeat: -1,
                     ease: Power0.easeIn,
                     yoyo: true
                 })
-            .seek(1)
+                .seek(0.5)
 
         this.tl2
             .fromTo(this.object, 1,
@@ -128,10 +127,10 @@ export default class Test2Component extends Component {
                         />
                     </div>
                 </div>
-                <div className="botton">
+                <div className="bottom">
                     <div
                         className="basket-object"
-                        ref={img => this.object = img}
+                        ref={div => this.object = div}
                         onClick={this.throw}
                     >
                         +
