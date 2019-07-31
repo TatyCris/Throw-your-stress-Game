@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import { Route } from "react-router-dom"
-import Test2Component from './components/Test2Component'
+// import Test2Component from './components/Test2Component'
 import './App.css';
+import ObjectsContainer from './components/ObjectsContainer';
 
 export default class App extends Component {
   render() {
@@ -10,7 +11,8 @@ export default class App extends Component {
         <header>
         </header>
         <main className="App-main">
-          <Test2Component />
+          {/* <Test2Component /> */}
+          <ObjectsContainer />
           {/* <Route exact path="/" component={EventsContainer} /> */}
         </main>
       </div>

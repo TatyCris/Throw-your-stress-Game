@@ -7,9 +7,6 @@ export default class Score extends Component {
         const goal = 15
         const divWidth = { width: this.props.score * 100 / goal + '%' }
 
-        
-
-        console.log('divWidth', divWidth)
         return (
             <div>
                 <p className="points">Score: {this.props.score} Points</p>

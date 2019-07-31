@@ -1,0 +1,9 @@
+.objectImage {
+    width: 200px;
+    height: 125px;
+}
+
+.imageContainer {
+    display: flex;
+    flex-direction: column;
+}
