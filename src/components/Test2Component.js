@@ -4,6 +4,7 @@ import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
 import { setScore, setTries } from '../actions/game'
 import './Test2Component.css'
+import Objects from './ObjectsContainer';
 
 class Test2Component extends Component {
     tlObject = new TimelineLite({ paused: true })
@@ -157,6 +158,7 @@ class Test2Component extends Component {
                         onClick={this.throw}
                     /> */}
                     <div>
+                        <Objects />
                         <Score score={this.props.score} />
                     </div>
                 </div>
