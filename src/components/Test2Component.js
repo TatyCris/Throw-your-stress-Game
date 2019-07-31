@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap";
+import { setScore, setTries } from '../actions/game'
 import './Test2Component.css'
 
-export default class Test2Component extends Component {
+class Test2Component extends Component {
     tlObject = new TimelineLite({ paused: true })
     tl2Object = new TimelineLite({ paused: true })
     object = null
@@ -60,6 +62,7 @@ export default class Test2Component extends Component {
             this.tlObject.pause()
             this.play = false
             this.whereIsTheObjectX()
+            this.props.setTries(1)
         }
     }
 
@@ -80,27 +83,35 @@ export default class Test2Component extends Component {
         const ring = target.width / (nRing * 2)
 
         if (objectCenter === targetCenter) {
+            this.props.setScore(7)
             return console.log('perfe')
         }
         if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
+            this.props.setScore(6)
             return console.log('primero')
         }
         if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
+            this.props.setScore(5)            
             return console.log('segundo')
         }
         if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
+            this.props.setScore(4)            
             return console.log('tercero')
         }
         if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
+            this.props.setScore(3)            
             return console.log('quarto')
         }
         if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
+            this.props.setScore(2)            
             return console.log('quinto')
         }
         if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
+            this.props.setScore(1)            
             return console.log('sexto')
         }
         else {
+            this.props.setScore(0)
             return console.log('fuera!')
         }
     }
@@ -148,3 +159,12 @@ export default class Test2Component extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        score: state.score,
+        tries: state.tries
+    }
+}
+
+export default connect(mapStateToProps, { setScore, setTries })(Test2Component)
