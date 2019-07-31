@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Route } from "react-router-dom"
-// import TestComponent from './components/TestComponent'
 import Test2Component from './components/Test2Component'
+import Score from './components/Score';
 import './App.css';
 
 export default class App extends Component {
@@ -11,8 +11,8 @@ export default class App extends Component {
         <header>
         </header>
         <main className="App-main">
-          {/* <TestComponent /> */}
           <Test2Component />
+          <Score />
           {/* <Route exact path="/" component={EventsContainer} /> */}
         </main>
       </div>
