@@ -12,10 +12,10 @@ export default class Test2Component extends Component {
     play = true
 
     componentDidMount() {
-        const target = this.target.getBoundingClientRect() 
+        const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
-        const targetCenterTop = target.top + target.height/2
-        const objectCenterTop = object.top + object.height/2
+        const targetCenterTop = target.top + target.height / 2
+        const objectCenterTop = object.top + object.height / 2
         const targetCenterY = targetCenterTop - objectCenterTop
 
         this.tlObject
@@ -31,7 +31,7 @@ export default class Test2Component extends Component {
                     ease: Power0.easeIn,
                     yoyo: true
                 })
-                .seek(0.5)
+            .seek(0.5)
 
         this.tl2Object
             .fromTo(this.object, 1,
@@ -59,37 +59,7 @@ export default class Test2Component extends Component {
             this.tl2Object.play()
             this.tlObject.pause()
             this.play = false
-
-            const objectWidth = this.object.getBoundingClientRect().width
-            const targetWidth = this.target.getBoundingClientRect().width
-            const objectCenter = this.object.getBoundingClientRect().x + objectWidth / 2
-            const targetCenter = this.target.getBoundingClientRect().x + targetWidth / 2
-            const ring = targetWidth / (6 * 2)
-
-            if (objectCenter === targetCenter) {
-                return console.log('perfe')
-            }
-            if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
-                return console.log('primero')
-            }
-            if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
-                return console.log('segundo')
-            }
-            if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
-                return console.log('tercero')
-            }
-            if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
-                return console.log('quarto')
-            }
-            if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
-                return console.log('quinto')
-            }
-            if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
-                return console.log('sexto')
-            } 
-            else {
-                return console.log('fuera!')
-            }
+            this.whereIsTheObjectX()
         }
     }
 
@@ -98,6 +68,40 @@ export default class Test2Component extends Component {
             this.tl2Object.reverse()
             this.tlObject.restart()
             this.play = true
+        }
+    }
+
+    whereIsTheObjectX = () => {
+        const target = this.target.getBoundingClientRect()
+        const object = this.object.getBoundingClientRect()
+        const objectCenter = object.x + object.width / 2
+        const targetCenter = target.x + target.width / 2
+        const nRing = 6
+        const ring = target.width / (nRing * 2)
+
+        if (objectCenter === targetCenter) {
+            return console.log('perfe')
+        }
+        if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
+            return console.log('primero')
+        }
+        if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
+            return console.log('segundo')
+        }
+        if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
+            return console.log('tercero')
+        }
+        if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
+            return console.log('quarto')
+        }
+        if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
+            return console.log('quinto')
+        }
+        if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
+            return console.log('sexto')
+        }
+        else {
+            return console.log('fuera!')
         }
     }
 
