@@ -5,11 +5,11 @@ import './Objects.css'
 export default class Objects extends Component {
     renderObjects = () => {
         return (
-            objectsDb.map(object => {
+            objectsDb.map((object, i) => {
                 return (
                     <div
                         ref={div => this.carousel = div}
-                        key={object.title}
+                        key={object.i}
                         className="imageContainer"
                     >
                         <img

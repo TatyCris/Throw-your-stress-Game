@@ -1,0 +1,28 @@
+.carousel-container {
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.carousel-items-container {
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+    overflow: hidden;
+}
+
+.carousel-items-container > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-items-container img {
+    width: 200px;
+    height: 125px;
+    padding: 5px;
+    display: block;
+}
+
+.controls {
+    transform: rotate(90deg);
+}

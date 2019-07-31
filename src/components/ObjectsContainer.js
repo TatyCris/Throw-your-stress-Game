@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Objects from './Objects'
 import { getObjects } from '../actions/game'
-import { TweenMax } from "gsap/all";
+// import { TweenMax } from "gsap/all";
 // import objectsDb from './objectsDb'
 
 class ObjectsContainer extends Component {
