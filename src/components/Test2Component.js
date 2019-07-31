@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
+import { TimelineLite, Power0, CSSPlugin, Back, TweenLite } from "gsap"
 import Score from './Score'
 import { setScore, setTries } from '../actions/game'
+import Carousel from './Carousel'
 import './Test2Component.css'
 import Objects from './ObjectsContainer';
 
 class Test2Component extends Component {
+    state = {
+        selectedObject: '',
+        hit: false
+    }
+
     tlObject = new TimelineLite({ paused: true })
-    tl2Object = new TimelineLite({ paused: true })
+    tl2Object = new TimelineLite({ paused: true, onComplete: () => this.setState({hit: true}) })
     object = null
     target = null
     hoopTween = null
+    hitRef = null
 
     play = true
 
@@ -48,6 +55,12 @@ class Test2Component extends Component {
                     scaleX: 0.5, scaleY: 0.5,
                     ease: Back.easeOut.config(3.5)
                 })
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        if ((prevState.hit !== this.state.hit) && this.state.hit) {
+            this.animateHit()
+        }
     }
 
     playGame = () => {
@@ -119,6 +132,48 @@ class Test2Component extends Component {
         }
     }
 
+    animateHit = () => {
+        const target = this.target.getBoundingClientRect()
+        const object = this.object.getBoundingClientRect()
+        const objectCenter = object.left + object.width / 2
+        // const targetCenter = target.left + target.width / 2
+
+        const targetCenterTop = target.top + target.height / 2
+        // const objectCenter = object.x + object.width / 2
+
+        // const objectCenterTop = object.top + object.height / 2
+        // const targetCenterY = targetCenterTop - objectCenterTop
+
+        // const hit = this.hitRef.getBoundingClientRect()
+        // const hitCenterX = hit.x + hit.width / 2
+        // const hitCenterY = hit.y + hit.height / 2
+        // const object = this.object.getBoundingClientRect()
+        const objectCenterX = object.x + object.width / 2
+        // const objectCenterY = object.y + object.height / 2
+        // console.log('ANIMATE object', objectCenterX, objectCenterY)
+        // console.log('ANIMATE HIT', hitCenterX, hitCenterY)
+
+        TweenLite.to(this.hitRef, 3, {
+            x: objectCenter,
+            y: targetCenterTop
+        })
+        // .onComplete(() => this.setState({hit: false}))
+    }
+
+    handleObjectClick = (img) => {
+        console.log('click', img)
+        this.setState({
+            selectedObject: img
+        })
+    }
+
+    renderHit = () => {
+        return <div 
+            className={this.state.hit ? 'hit active' : 'hit'} 
+            ref={div => this.hitRef = div}>
+        </div>
+    }
+
     render() {
         return (
             <div className="container">
@@ -140,12 +195,16 @@ class Test2Component extends Component {
                             className="target"
                             ref={img => this.target = img}
                         />
+                        {this.renderHit()}
                     </div>
                 </div>
                 <div className="bottom">
                     <div
                         className="basket-object"
                         ref={div => this.object = div}
+                        style={{
+                            backgroundImage: `url('${this.state.selectedObject}')`
+                        }}
                         onClick={this.throw}
                     >
                         +
@@ -157,11 +216,9 @@ class Test2Component extends Component {
                         ref={img => this.object = img}
                         onClick={this.throw}
                     /> */}
-                    <div>
-                        <Objects />
-                        <Score score={this.props.score} />
-                    </div>
+                    <Score score={this.props.score} />
                 </div>
+                <Carousel handleClick={this.handleObjectClick} />
             </div>
         )
     }

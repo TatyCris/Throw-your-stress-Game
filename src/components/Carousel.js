@@ -19,38 +19,38 @@ export default class Carousel extends Component {
     }
 
     animateCarousel = (control) => {
-            const itemsContainerRect = this.itemsContainer.getBoundingClientRect()
-            const itemsListRect = this.itemsList.getBoundingClientRect()
+        const itemsContainerRect = this.itemsContainer.getBoundingClientRect()
+        const itemsListRect = this.itemsList.getBoundingClientRect()
 
-            // console.log('itemsListRect', itemsListRect.bottom, itemsListRect)
-            // console.log('itemsContainerRect', itemsContainerRect.top)
-            
-            const nSlides = 2
-            const offsetBottom = itemsListRect.bottom - itemsContainerRect.bottom
-            const itemListY = itemsListRect.top
-            const heightSlides = nSlides * (this.imageRef.getBoundingClientRect().height + 10)
-            // console.log('imageheight', this.imageRef.getBoundingClientRect().height)
-            // console.log('heighSlides', heightSlides)
-            let offset = null
-            if (control === 'next') {
-                // if (itemsListRect.bottom + heightSlides > itemsContainerRect.bottom) {
-                //     console.log('NEXT', itemsListRect, itemsContainerRect)
-                //     offset = itemsContainerRect.bottom
-                // } else {
-                // }
-                
-                offset = "-=" + heightSlides
-            }
-            if (control === 'prev') {
-                // console.log('PREV', itemsListRect, itemsContainerRect)
-                offset = "+=" + heightSlides
-            }
-            // const offset = control === 'next' ? (itemsContainerRect.top - heightSlides) : (itemsContainerRect.top + heightSlides)
-            if (offset) {
-                TweenLite.to(this.itemsList, 1, {
-                    y: offset
-                })
-            }
+        // console.log('itemsListRect', itemsListRect.bottom, itemsListRect)
+        // console.log('itemsContainerRect', itemsContainerRect.top)
+
+        const nSlides = 2
+        const offsetBottom = itemsListRect.bottom - itemsContainerRect.bottom
+        const itemListY = itemsListRect.top
+        const heightSlides = nSlides * (this.imageRef.getBoundingClientRect().height + 10)
+        // console.log('imageheight', this.imageRef.getBoundingClientRect().height)
+        // console.log('heighSlides', heightSlides)
+        let offset = null
+        if (control === 'next') {
+            // if (itemsListRect.bottom + heightSlides > itemsContainerRect.bottom) {
+            //     console.log('NEXT', itemsListRect, itemsContainerRect)
+            //     offset = itemsContainerRect.bottom
+            // } else {
+            // }
+
+            offset = "-=" + heightSlides
+        }
+        if (control === 'prev') {
+            // console.log('PREV', itemsListRect, itemsContainerRect)
+            offset = "+=" + heightSlides
+        }
+        // const offset = control === 'next' ? (itemsContainerRect.top - heightSlides) : (itemsContainerRect.top + heightSlides)
+        if (offset) {
+            TweenLite.to(this.itemsList, 1, {
+                y: offset
+            })
+        }
     }
 
     prevSlide = (event) => {
@@ -66,8 +66,14 @@ export default class Carousel extends Component {
     renderImages = () => {
         return <ul ref={ul => this.itemsList = ul}>
             {this.state.images.map((image, index) => {
-                return <li>
-                    <img className="carousel-item" key={index} src={image.img} alt={image.title} ref={img => this.imageRef = img} />
+                return <li onClick={() => this.props.handleClick(image.img)}>
+                    <img 
+                        className="carousel-item" 
+                        ref={img => this.imageRef = img}
+                        key={index} 
+                        src={image.img}
+                        alt={image.title}
+                    />
                 </li>
             })}
 
@@ -78,11 +84,11 @@ export default class Carousel extends Component {
         // const index = this.state.currentImageIndex
         return (
             <div className="carousel-container">
-                <div className="controls" onClick={this.prevSlide}>{'<'}</div>
+                <div className="carousel-controls" onClick={this.prevSlide}>{'<'}</div>
                 <div className="carousel-items-container" ref={div => this.itemsContainer = div}>
                     {this.renderImages()}
                 </div>
-                <div className="controls" onClick={this.nextSlide}>{'>'}</div>
+                <div className="carousel-controls" onClick={this.nextSlide}>{'>'}</div>
             </div>
         )
     }

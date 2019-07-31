@@ -1,6 +1,8 @@
 .carousel-container {
-    /* display: flex;
-    flex-direction: column; */
+    display: block;
+    position: absolute;
+    left: 5%;
+    top: 25%;
 }
 
 .carousel-items-container {
@@ -23,6 +25,7 @@
     display: block;
 }
 
-.controls {
+.carousel-controls {
+    cursor: pointer;
     transform: rotate(90deg);
 }

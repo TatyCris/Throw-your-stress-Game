@@ -5,20 +5,48 @@
     display: flex;
     flex-direction: column;
 }
-.controls {
+.controls > button{
+    cursor: pointer;
     /* position: relative; */
     /* top: -200px; */
 }
 .target {
     height: 200px;
-    /* position: relative; */
+    position: relative;
     /* top: -200px; */
 }
 
+.hit {
+    display: none;
+    width: 100px;
+    background-image: url('../images/hit-pidgeon.png');
+    height: 80px;
+    position: absolute;
+    background-size: cover;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: calc(50% - 40px);
+    left: calc(50% - 50px);
+}
+
+.hit.active {
+    display: block;
+}
+
 .basket-object {
-    /* width: 50px; */
+    height: 80px;
+    width: 80px;
     cursor: pointer;
     margin: 0 auto;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    background-position: center;
+    background-size: cover;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
 
 .controls button {
