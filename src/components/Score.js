@@ -1,35 +1,24 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { TimelineMax } from "gsap";
+import React, { Component } from 'react';
+import './Score.css';
 
-class Score extends Component {
-    tlScore = new TimelineMax()
-    score = null
-
-    // tlScore
-    // .to($progressBar, 2, {
-    //     value: 100,
-    //     ease: Power2.easeInOut
-    // })
-    // .repeat(-1)
+export default class Score extends Component {
 
     render() {
+        const goal = 15
+        const divWidth = { width: this.props.score * 100 / goal + '%' }
+
+        
+
+        console.log('divWidth', divWidth)
         return (
-            <div
-                className="scoreBar"
-                ref={div => this.score = div}
-            >
-                hi
+            <div>
+                <p className="points">Score: {this.props.score} Points</p>
+                <div className='scoreBarContainer'>
+                    <div className='scoreBar'>
+                        <div className='progress' style={divWidth} ></div>
+                    </div>
+                </div>
             </div>
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        score: state.score,
-        // tries: state.tries
-    }
-}
-
-export default connect(mapStateToProps)(Score)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { TimelineLite, Power0, CSSPlugin, Back } from "gsap";
+import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
+import Score from './Score'
 import { setScore, setTries } from '../actions/game'
 import './Test2Component.css'
 
@@ -48,7 +49,7 @@ class Test2Component extends Component {
                 })
     }
 
-    play = () => {
+    playGame = () => {
         if (this.play) {
             this.tlObject.play()
         }
@@ -91,27 +92,28 @@ class Test2Component extends Component {
             return console.log('primero')
         }
         if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
-            this.props.setScore(5)            
+            this.props.setScore(5)
             return console.log('segundo')
         }
         if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
-            this.props.setScore(4)            
+            this.props.setScore(4)
             return console.log('tercero')
         }
         if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
-            this.props.setScore(3)            
+            this.props.setScore(3)
             return console.log('quarto')
         }
         if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
-            this.props.setScore(2)            
+            this.props.setScore(2)
             return console.log('quinto')
         }
         if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
-            this.props.setScore(1)            
+            this.props.setScore(1)
             return console.log('sexto')
         }
         else {
             this.props.setScore(0)
+            // this.props.setScore(-1)
             return console.log('fuera!')
         }
     }
@@ -123,7 +125,7 @@ class Test2Component extends Component {
                     <div className="controls">
                         <button
                             className="play"
-                            onClick={this.play}
+                            onClick={this.playGame}
                         >Play</button>
                         <button
                             className="try-again"
@@ -154,6 +156,9 @@ class Test2Component extends Component {
                         ref={img => this.object = img}
                         onClick={this.throw}
                     /> */}
+                    <div>
+                        <Score score={this.props.score} />
+                    </div>
                 </div>
             </div>
         )
