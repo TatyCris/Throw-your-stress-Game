@@ -3,23 +3,22 @@ import { TimelineLite, Power0, CSSPlugin, Back } from "gsap";
 import './Test2Component.css'
 
 export default class Test2Component extends Component {
-    tl = new TimelineLite({ paused: true })
-    tl2 = new TimelineLite({ paused: true })
+    tlObject = new TimelineLite({ paused: true })
+    tl2Object = new TimelineLite({ paused: true })
     object = null
-    hoopContainer = null
+    target = null
     hoopTween = null
-    output = null
 
     play = true
 
     componentDidMount() {
-        const target = this.hoopContainer.getBoundingClientRect() 
+        const target = this.target.getBoundingClientRect() 
         const object = this.object.getBoundingClientRect()
         const targetCenterTop = target.top + target.height/2
         const objectCenterTop = object.top + object.height/2
         const targetCenterY = targetCenterTop - objectCenterTop
 
-        this.tl
+        this.tlObject
             .fromTo(this.object, 1,
                 {
                     y: 0,
@@ -34,7 +33,7 @@ export default class Test2Component extends Component {
                 })
                 .seek(0.5)
 
-        this.tl2
+        this.tl2Object
             .fromTo(this.object, 1,
                 {
                     y: 0
@@ -49,7 +48,7 @@ export default class Test2Component extends Component {
 
     play = () => {
         if (this.play) {
-            this.tl.play()
+            this.tlObject.play()
         }
     }
 
@@ -57,17 +56,15 @@ export default class Test2Component extends Component {
         CSSPlugin.useSVGTransformAttr = true;
 
         if (this.play) {
-            this.tl2.play()
-            this.tl.pause()
+            this.tl2Object.play()
+            this.tlObject.pause()
             this.play = false
 
             const objectWidth = this.object.getBoundingClientRect().width
-            const targetWidth = this.hoopContainer.getBoundingClientRect().width
+            const targetWidth = this.target.getBoundingClientRect().width
             const objectCenter = this.object.getBoundingClientRect().x + objectWidth / 2
-            const targetCenter = this.hoopContainer.getBoundingClientRect().x + targetWidth / 2
+            const targetCenter = this.target.getBoundingClientRect().x + targetWidth / 2
             const ring = targetWidth / (6 * 2)
-
-            console.log('variables', objectWidth, targetWidth, objectCenter, targetCenter, ring)
 
             if (objectCenter === targetCenter) {
                 return console.log('perfe')
@@ -98,8 +95,8 @@ export default class Test2Component extends Component {
 
     tryAgain = () => {
         if (!this.play) {
-            this.tl2.reverse()
-            this.tl.restart()
+            this.tl2Object.reverse()
+            this.tlObject.restart()
             this.play = true
         }
     }
@@ -121,9 +118,9 @@ export default class Test2Component extends Component {
                     <div className="target">
                         <img
                             src="https://www.playsport.net/sites/playsport.ophea.net/files/ophea-files/icons/ophea-playsport-icons_target-games.png"
-                            alt="basketball hoop"
-                            className="basketball-hoop"
-                            ref={img => this.hoopContainer = img}
+                            alt="target"
+                            className="target"
+                            ref={img => this.target = img}
                         />
                     </div>
                 </div>
@@ -142,9 +139,6 @@ export default class Test2Component extends Component {
                         ref={img => this.object = img}
                         onClick={this.throw}
                     /> */}
-                </div>
-                <div>
-                    <p ref={p => this.output = p}></p>
                 </div>
             </div>
         )
