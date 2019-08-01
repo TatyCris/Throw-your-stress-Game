@@ -8,6 +8,10 @@
     display: block;
 }
 
+.modal h3 {
+    font-size: 30px;
+}
+
 /* .modal-main {
     color: black;
     position: fixed;

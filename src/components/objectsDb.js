@@ -5,6 +5,7 @@ import cat from '../images/cat.jpg'
 import work from '../images/work.jpeg'
 import dogShit from '../images/dog-shit.jpg'
 import phone from '../images/cellphone.jpeg'
+import rein from '../images/Rein.jpeg'
 
 const objectsDb = [
     {
@@ -34,6 +35,10 @@ const objectsDb = [
     {
         title: 'stress with your phone',
         img: phone
+    },
+    {
+        title: 'Rein',
+        img: rein
     }
 
 ]
