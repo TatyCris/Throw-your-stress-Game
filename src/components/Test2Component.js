@@ -68,7 +68,6 @@ class Test2Component extends Component {
         if ((prevState.hit !== this.state.hit) && this.state.hit) {
             this.animateHit()
         }
-        console.log('score', this.props.score)
         if ((prevProps.score !== this.props.score) && this.props.score >= 21) {
             if (this.props.score >= 21) {
                 setTimeout(() => {
@@ -173,8 +172,8 @@ class Test2Component extends Component {
             })
             this.tl2Object
                 .to(this.object, 2, {
-                    x: 200,
-                    y: -50
+                    x: 300,
+                    y: -500
                 })
         }
     }
