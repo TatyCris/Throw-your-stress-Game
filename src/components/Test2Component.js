@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
 import { setScore, setTries } from '../actions/game'
+import { getGiphy } from '../actions/giphy'
 import Carousel from './Carousel'
 import './Test2Component.css'
-// import Objects from './ObjectsContainer';
 import hitImage from '../images/hit-pidgeon.png'
 import crossIcon from '../images/cross-icon.png'
+import Modal from './Modal'
 
 class Test2Component extends Component {
     state = {
         selectedObject: '',
         hit: false,
-        play: true
+        play: true,
+        openModal: false
     }
 
     tlObject = new TimelineLite({ paused: true })
@@ -25,9 +27,9 @@ class Test2Component extends Component {
     hitRef = null
     hitTarget = true
 
-    // play = true
-
     componentDidMount() {
+        this.props.getGiphy()
+
         const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
         const targetCenterTop = target.top + target.height / 2
@@ -66,6 +68,17 @@ class Test2Component extends Component {
         if ((prevState.hit !== this.state.hit) && this.state.hit) {
             this.animateHit()
         }
+        if ((prevProps.score !== this.props.score) && this.props.score >= 21) {
+            this.showModal()
+        }
+    }
+
+    showModal = () => {
+        this.setState({ openModal: true })
+    }
+
+    hideModal = () => {
+        this.setState({ openModal: false })
     }
 
     playGame = () => {
@@ -174,8 +187,17 @@ class Test2Component extends Component {
         </div>
     }
 
+    renderGiphy = () => {
+        return (
+            <img
+                src={this.props.giphy}
+                alt="giphy"
+                className="giphy"
+            />
+        )
+    }
+
     render() {
-        console.log(this.state.play)
         return (
             <div className="container">
                 <div className="top">
@@ -211,7 +233,9 @@ class Test2Component extends Component {
                     <Score score={this.props.score} />
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
-                <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>                
+                <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>
+                {/* {this.props.score >= 21 ? this.showModal() : null} */}
+                <Modal openModal={this.state.openModal} hideModal={this.hideModal} giphy={this.renderGiphy} />
             </div>
         )
     }
@@ -220,8 +244,9 @@ class Test2Component extends Component {
 const mapStateToProps = (state) => {
     return {
         score: state.score,
-        tries: state.tries
+        tries: state.tries,
+        giphy: state.giphy
     }
 }
 
-export default connect(mapStateToProps, { setScore, setTries })(Test2Component)
+export default connect(mapStateToProps, { setScore, setTries, getGiphy })(Test2Component)

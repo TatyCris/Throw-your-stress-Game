@@ -4,7 +4,7 @@ import './Score.css';
 export default class Score extends Component {
 
     render() {
-        const goal = 15
+        const goal = 21
         const divWidth = { width: this.props.score * 100 / goal + '%' }
 
         return (

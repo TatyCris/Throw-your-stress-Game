@@ -27,10 +27,11 @@
 }
 
 .button {
+    cursor: pointer;
     background-color: #bf0a53;
     color: #fff;
     padding: 10px;
-    min-width: 100px;
+    min-width: 120px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 7px;

@@ -57,11 +57,11 @@
     background-color: #bf0a53;
     color: #fff;
     padding: 10px;
-    min-width: 100px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 7px;
     margin: 20px 7px;
+    width: 160px;
 }
 
 .controls button:hover,
@@ -75,7 +75,7 @@
     background-color: #298b8b;
     color: #fff;
     padding: 10px;
-    min-width: 100px;
+    min-width: 120px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 7px;
