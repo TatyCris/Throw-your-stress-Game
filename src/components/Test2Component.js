@@ -68,8 +68,8 @@ class Test2Component extends Component {
         if ((prevState.hit !== this.state.hit) && this.state.hit) {
             this.animateHit()
         }
-        if ((prevProps.score !== this.props.score) && this.props.score >= 21) {
-            if (this.props.score >= 21) {
+        if ((prevProps.score !== this.props.score) && this.props.score >= 15) {
+            if (this.props.score >= 15) {
                 setTimeout(() => {
                     this.showModal()
                 }, 2000)
