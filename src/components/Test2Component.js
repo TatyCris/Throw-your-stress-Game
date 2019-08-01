@@ -112,6 +112,9 @@ class Test2Component extends Component {
             this.setState({
                 play: true
             })
+            this.setState({
+                selectedObject: crossIcon
+            })
         }
     }
 
@@ -209,7 +212,7 @@ class Test2Component extends Component {
                         {this.state.play ?
                             <button
                                 className="play"
-                                onClick={this.playGame}
+                                onClick={this.playGame()}
                             >Play</button> :
                             <button
                                 className="try-again"

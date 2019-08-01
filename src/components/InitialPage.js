@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TimelineMax } from 'gsap'
+// import { TimelineMax } from 'gsap'
 import { Link } from 'react-router-dom'
 import './InitialPage.css'
 
@@ -30,7 +30,7 @@ export default class InitialPage extends Component {
     // speed = (3 - this.sizeIndex)
     // this.screen.appendChild(this.bubbleChild)
 
-    
+
     componentDidMount() {
         const sizeIndex = this.randomNumber(0, 2)
         // size = this.sizes[this.sizeIndex]
@@ -67,20 +67,20 @@ export default class InitialPage extends Component {
                     const sizeIndex = this.randomNumber(0, 2)
                     // const size = this.sizes[sizeIndex]
                     const speed = (3 - sizeIndex)
-        
+
                     this.bubblesRef[i] = React.createRef()
                     // bubbles[i] = React.createElement('div', { className: "bubble", ref: bubblesRef[i] })
                     return <div className="bubble" ref={this.bubblesRef[i]}></div>
                 }
             }}
         </div>)
-        
+
         // (() => {
         //         for (let i = 0; i < 50; i++) {
         //             const sizeIndex = this.randomNumber(0, 2)
         //             // const size = this.sizes[sizeIndex]
         //             const speed = (3 - sizeIndex)
-        
+
         //             this.bubblesRef[i] = React.createRef()
         //             // bubbles[i] = React.createElement('div', { className: "bubble", ref: bubblesRef[i] })
         //             return <div className="bubble" ref={this.bubblesRef[i]}></div>
@@ -99,6 +99,7 @@ export default class InitialPage extends Component {
     render() {
         return (
             <div className="buttons-container" ref={div => this.screen = div}>
+                <h1 className="title">Throw Your Stress</h1>
                 {this.renderBubbles()}
                 <Link to={'/game'}><button className="button" onClick={this.onClick}>PLAY</button></Link>
                 <Link to={'/instructions'}><button className="button" onClick={this.onClick}>HOW TO PLAY</button></Link>
