@@ -1,0 +1,17 @@
+.text-container {
+    width: 60%;
+    color: #FFC107;
+}
+
+.green-text {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.text-container p {
+    padding: 20px;
+}
+
+.clover {
+    width: 50px;
+}

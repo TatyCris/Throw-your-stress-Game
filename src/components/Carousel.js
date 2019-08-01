@@ -19,15 +19,15 @@ export default class Carousel extends Component {
     }
 
     animateCarousel = (control) => {
-        const itemsContainerRect = this.itemsContainer.getBoundingClientRect()
-        const itemsListRect = this.itemsList.getBoundingClientRect()
+        // const itemsContainerRect = this.itemsContainer.getBoundingClientRect()
+        // const itemsListRect = this.itemsList.getBoundingClientRect()
 
         // console.log('itemsListRect', itemsListRect.bottom, itemsListRect)
         // console.log('itemsContainerRect', itemsContainerRect.top)
 
         const nSlides = 2
-        const offsetBottom = itemsListRect.bottom - itemsContainerRect.bottom
-        const itemListY = itemsListRect.top
+        // const offsetBottom = itemsListRect.bottom - itemsContainerRect.bottom
+        // const itemListY = itemsListRect.top
         const heightSlides = nSlides * (this.imageRef.getBoundingClientRect().height + 10)
         // console.log('imageheight', this.imageRef.getBoundingClientRect().height)
         // console.log('heighSlides', heightSlides)

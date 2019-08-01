@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { TimelineLite, Power0, CSSPlugin, Back, TweenLite } from "gsap"
+import { Link } from 'react-router-dom'
+import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
 import { setScore, setTries } from '../actions/game'
 import Carousel from './Carousel'
 import './Test2Component.css'
-import Objects from './ObjectsContainer';
+// import Objects from './ObjectsContainer';
 import hitImage from '../images/hit-pidgeon.png'
 import crossIcon from '../images/cross-icon.png'
 
@@ -210,6 +211,7 @@ class Test2Component extends Component {
                     <Score score={this.props.score} />
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
+                <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>                
             </div>
         )
     }

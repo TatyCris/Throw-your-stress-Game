@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-// import { Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import Test2Component from './components/Test2Component'
-// import Carousel from './components/Carousel';
 import './App.css';
-// import ObjectsContainer from './components/ObjectsContainer';
+import InitialPage from './components/InitialPage';
+import Instructions from './components/Instructions';
 
 export default class App extends Component {
   render() {
@@ -12,10 +12,9 @@ export default class App extends Component {
         <header>
         </header>
         <main className="App-main">
-          <Test2Component />
-          {/* <ObjectsContainer /> */}
-          {/* <Carousel /> */}
-          {/* <Route exact path="/" component={EventsContainer} /> */}
+          <Route exact path="/" component={InitialPage} />
+          <Route exact path="/instructions" component={Instructions} />
+          <Route exact path="/game" component={Test2Component} />
         </main>
       </div>
     )
