@@ -6,21 +6,25 @@ import { setScore, setTries } from '../actions/game'
 import Carousel from './Carousel'
 import './Test2Component.css'
 import Objects from './ObjectsContainer';
+import hitImage from '../images/hit-pidgeon.png'
+import crossIcon from '../images/cross-icon.png'
 
 class Test2Component extends Component {
     state = {
         selectedObject: '',
-        hit: false
+        hit: false,
+        play: true
     }
 
     tlObject = new TimelineLite({ paused: true })
-    tl2Object = new TimelineLite({ paused: true, onComplete: () => this.setState({hit: true}) })
+    tl2Object = new TimelineLite({ paused: true, onComplete: () => this.setState({ hit: true }) })
     object = null
     target = null
     hoopTween = null
     hitRef = null
+    hitTarget = true
 
-    play = true
+    // play = true
 
     componentDidMount() {
         const target = this.target.getBoundingClientRect()
@@ -57,14 +61,14 @@ class Test2Component extends Component {
                 })
     }
 
-    componentDidUpdate (prevProps, prevState) {
+    componentDidUpdate(prevProps, prevState) {
         if ((prevState.hit !== this.state.hit) && this.state.hit) {
             this.animateHit()
         }
     }
 
     playGame = () => {
-        if (this.play) {
+        if (this.state.play) {
             this.tlObject.play()
         }
     }
@@ -72,20 +76,24 @@ class Test2Component extends Component {
     throw = () => {
         CSSPlugin.useSVGTransformAttr = true;
 
-        if (this.play) {
+        if (this.state.play) {
             this.tl2Object.play()
             this.tlObject.pause()
-            this.play = false
             this.whereIsTheObjectX()
             this.props.setTries(1)
+            this.setState({
+                play: false
+            })
         }
     }
 
     tryAgain = () => {
-        if (!this.play) {
-            this.tl2Object.reverse()
+        if (!this.state.play) {
+            this.tl2Object.seek(-3).reverse()
             this.tlObject.restart()
-            this.play = true
+            this.setState({
+                play: true
+            })
         }
     }
 
@@ -99,30 +107,37 @@ class Test2Component extends Component {
 
         if (objectCenter === targetCenter) {
             this.props.setScore(7)
+            this.hitTarget = true;
             return console.log('perfe')
         }
         if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
             this.props.setScore(6)
+            this.hitTarget = true;
             return console.log('primero')
         }
         if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
             this.props.setScore(5)
+            this.hitTarget = true;
             return console.log('segundo')
         }
         if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
             this.props.setScore(4)
+            this.hitTarget = true;
             return console.log('tercero')
         }
         if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
             this.props.setScore(3)
+            this.hitTarget = true;
             return console.log('quarto')
         }
         if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
             this.props.setScore(2)
+            this.hitTarget = true;
             return console.log('quinto')
         }
         if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
             this.props.setScore(1)
+            this.hitTarget = true;
             return console.log('sexto')
         }
         else {
@@ -133,60 +148,47 @@ class Test2Component extends Component {
     }
 
     animateHit = () => {
-        const target = this.target.getBoundingClientRect()
-        const object = this.object.getBoundingClientRect()
-        const objectCenter = object.left + object.width / 2
-        // const targetCenter = target.left + target.width / 2
-
-        const targetCenterTop = target.top + target.height / 2
-        // const objectCenter = object.x + object.width / 2
-
-        // const objectCenterTop = object.top + object.height / 2
-        // const targetCenterY = targetCenterTop - objectCenterTop
-
-        // const hit = this.hitRef.getBoundingClientRect()
-        // const hitCenterX = hit.x + hit.width / 2
-        // const hitCenterY = hit.y + hit.height / 2
-        // const object = this.object.getBoundingClientRect()
-        const objectCenterX = object.x + object.width / 2
-        // const objectCenterY = object.y + object.height / 2
-        // console.log('ANIMATE object', objectCenterX, objectCenterY)
-        // console.log('ANIMATE HIT', hitCenterX, hitCenterY)
-
-        TweenLite.to(this.hitRef, 3, {
-            x: objectCenter,
-            y: targetCenterTop
-        })
-        // .onComplete(() => this.setState({hit: false}))
+        if (this.hitTarget) {
+            this.setState({
+                selectedObject: hitImage
+            })
+            this.tl2Object
+                .to(this.object, 2, {
+                    x: 200,
+                    y: -50
+                })
+        }
     }
 
     handleObjectClick = (img) => {
-        console.log('click', img)
         this.setState({
             selectedObject: img
         })
     }
 
     renderHit = () => {
-        return <div 
-            className={this.state.hit ? 'hit active' : 'hit'} 
+        return <div
+            className={this.state.hit ? 'hit active' : 'hit'}
             ref={div => this.hitRef = div}>
         </div>
     }
 
     render() {
+        console.log(this.state.play)
         return (
             <div className="container">
                 <div className="top">
                     <div className="controls">
-                        <button
-                            className="play"
-                            onClick={this.playGame}
-                        >Play</button>
-                        <button
-                            className="try-again"
-                            onClick={this.tryAgain}
-                        >Try again</button>
+                        {this.state.play ?
+                            <button
+                                className="play"
+                                onClick={this.playGame}
+                            >Play</button> :
+                            <button
+                                className="try-again"
+                                onClick={this.tryAgain}
+                            >Try again</button>
+                        }
                     </div>
                     <div className="target">
                         <img
@@ -195,27 +197,16 @@ class Test2Component extends Component {
                             className="target"
                             ref={img => this.target = img}
                         />
-                        {this.renderHit()}
                     </div>
                 </div>
-                <div className="bottom">
+                <div className="bottom" onClick={this.throw}>
                     <div
-                        className="basket-object"
-                        ref={div => this.object = div}
                         style={{
-                            backgroundImage: `url('${this.state.selectedObject}')`
+                            backgroundImage: `url('${this.state.selectedObject || crossIcon}')`
                         }}
-                        onClick={this.throw}
-                    >
-                        +
-                    </div>
-                    {/* <img
-                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/logo-man.svg"
-                        alt=""
                         className="basket-object"
                         ref={img => this.object = img}
-                        onClick={this.throw}
-                    /> */}
+                    />
                     <Score score={this.props.score} />
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
