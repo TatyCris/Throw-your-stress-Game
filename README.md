@@ -2,7 +2,6 @@
 This project is a Front-end web-application game where players can play as a dart game.
 
 ## Table of contents
-
 - [Intro](#Intro)
 - [Technologies used](#Technologies-used)
 - [Goals for this project](#Goals-for-this-project)
@@ -10,7 +9,7 @@ This project is a Front-end web-application game where players can play as a dar
 - [Create React App](#Create-React-App)
 
 ## Intro
-This is a React app, which was creadted for the graduates hackathon during the week 10 at Codaisseur Academy.
+This is a React app, which was creadted for the hackathon graduates during the week 10 at Codaisseur Academy.
 
 **[Check out the deployed app here!](https://throwyourstress.netlify.com/)**
 
