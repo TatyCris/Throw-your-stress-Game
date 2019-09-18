@@ -29,7 +29,7 @@ This is a React app, which was creadted for the hackathon graduates during the w
 ## Setup
 - git clone
 ```bash
-$ git clone https://github.com/TatyCris/Swap-Tickets-Client.git
+$ git clone https://github.com/TatyCris/Throw-your-stress-Game.git
 ```
 
 - npm install
