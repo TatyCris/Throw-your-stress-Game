@@ -2,7 +2,6 @@
 Hackathon project for Codaisseur in React where you can play a kind of dart game.
 
 ## Table of contents
-
 - [Intro](#Intro)
 - [Technologies used](#Technologies-used)
 - [Goals for this project](#Goals-for-this-project)
@@ -10,7 +9,7 @@ Hackathon project for Codaisseur in React where you can play a kind of dart game
 - [Create React App](#Create-React-App)
 
 ## Intro
-This is a React app, which was creadted for the graduates hackathon during the week 10 at Codaisseur Academy.
+This is a React app, which was creadted for the hackathon graduates during the week 10 at Codaisseur Academy.
 
 **[Check out the deployed app here!](https://throwyourstress.netlify.com/)**
 
@@ -38,7 +37,7 @@ This is a React app, which was creadted for the graduates hackathon during the w
 ## Setup
 - git clone
 ```bash
-$ git clone https://github.com/TatyCris/Swap-Tickets-Client.git
+$ git clone https://github.com/TatyCris/Throw-your-stress-Game.git
 ```
 
 - npm install
