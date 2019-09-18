@@ -28,11 +28,11 @@ This is a React app, which was creadted for the hackathon graduates during the w
 - [x] Rules: No rules!
 
 ## Features to implement 
-- [] Indicators to click on the image and click on the dart.
-- [] Restart button.
-- [] Fix (infinite) carousel.
-- [] Implement next turn button.
-- [] Fix the flying pigeon (not always) at the end of the turn.
+- [ ] Indicators to click on the image and click on the dart.
+- [ ] Restart button.
+- [ ] Fix (infinite) carousel.
+- [ ] Implement next turn button.
+- [ ] Fix the flying pigeon (not always) at the end of the turn.
 
 ## Setup
 - git clone
