@@ -1,5 +1,5 @@
 # Throw-Your-Stress
-This project is a Front-end web-application game where players can play as a dart game.
+Hackathon project for Codaisseur in React where you can play a kind of dart game.
 
 ## Table of contents
 
@@ -14,18 +14,26 @@ This is a React app, which was creadted for the graduates hackathon during the w
 
 **[Check out the deployed app here!](https://throwyourstress.netlify.com/)**
 
-## Technologies used
+## Used Technologies
 - React
 - Redux
 - Redux-Thunk
+- React Router
 - GSAP
 - CSS
 
 ## Goals for this project
-- [x] Use new technologie.
+- [x] Use new technology.
 - [x] Limit time: 2,5 days.
 - [x] Theme: Stress.
 - [x] Rules: No rules!
+
+## Features to implement 
+- [] Indicators to click on the image and click on the dart.
+- [] Restart button.
+- [] Fix (infinite) carousel.
+- [] Implement next turn button.
+- [] Fix the flying pigeon (not always) at the end of the turn.
 
 ## Setup
 - git clone
