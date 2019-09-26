@@ -17,7 +17,7 @@ This is a React app, which was creadted for the hackathon graduates during the w
 - React
 - Redux
 - Redux-Thunk
-- React Router
+- React-Router
 - GSAP
 - CSS
 
