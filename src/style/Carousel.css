@@ -8,7 +8,7 @@
 .carousel-items-container {
     display: flex;
     flex-direction: column;
-    height: 420px;
+    height: 405px;
     overflow: hidden;
 }
 

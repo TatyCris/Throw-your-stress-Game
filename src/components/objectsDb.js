@@ -40,7 +40,6 @@ const objectsDb = [
         title: 'Rein',
         img: rein
     }
-
 ]
 
 export default objectsDb
