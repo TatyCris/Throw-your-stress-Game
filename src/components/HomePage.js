@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { TimelineMax } from 'gsap'
 import { Link } from 'react-router-dom'
-import './InitialPage.css'
+import '../style/HomePage.css'
 
 export default class InitialPage extends Component {
     sizes = ["small", "medium", "large"]

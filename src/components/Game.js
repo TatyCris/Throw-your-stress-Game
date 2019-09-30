@@ -6,10 +6,10 @@ import Score from './Score'
 import { setScore, setTries } from '../actions/game'
 import { getGiphy } from '../actions/giphy'
 import Carousel from './Carousel'
-import './Test2Component.css'
 import hitImage from '../images/hit-pidgeon.png'
 import crossIcon from '../images/cross-icon.png'
 import Modal from './Modal'
+import '../style/Game.css'
 
 class Test2Component extends Component {
     state = {

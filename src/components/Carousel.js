@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TweenLite } from "gsap"
 import objectsDB from './objectsDb'
-import './Carousel.css'
+import '../style/Carousel.css'
 
 export default class Carousel extends Component {
     // tween = TweenLite

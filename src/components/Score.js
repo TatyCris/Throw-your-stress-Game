@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Score.css';
+import '../style/Score.css';
 
 export default class Score extends Component {
 

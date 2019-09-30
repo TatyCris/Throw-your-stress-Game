@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import objectsDb from './objectsDb'
-import './Objects.css'
+import '../style/Objects.css'
 
 export default class Objects extends Component {
     renderObjects = () => {
