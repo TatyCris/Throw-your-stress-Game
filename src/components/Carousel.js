@@ -31,33 +31,27 @@ export default class Carousel extends Component {
             this.setState({
                 prevControllerActive: true
             })
-            if (items.bottom === container.bottom + img.height) {
-                offset = "-=" + img.height
-            } 
-            if (items.bottom > container.bottom + img.height) {
-                offset = "-=" + nSlides * img.height
-            }
             if (items.bottom <= container.bottom + nSlides * img.height) { 
+                offset = "-=" + (items.bottom - container.bottom)
                 this.setState({
                     nextControllerActive: false
                 })
+            } else {
+                offset = "-=" + nSlides * img.height
             }
         }
         if (control === 'prev') {
             this.setState({
                 nextControllerActive: true
             })
-            
-            if (items.top === container.top - img.height) {
-                offset = "+=" + img.height
-            }
-            if (items.top < container.top - img.height) {
-                offset = "+=" + nSlides * img.height
-            }
             if (items.top >= container.top - nSlides * img.height) { 
+                offset = "+=" + (container.top - items.top)
+
                 this.setState({
                     prevControllerActive: false
                 })
+            } else {
+                offset = "+=" + nSlides * img.height
             }
         }
         if (offset) {
