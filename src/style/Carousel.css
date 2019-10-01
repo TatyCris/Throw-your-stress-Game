@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 
-.carousel-items-container > ul {
+.carousel-items-container>ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -28,5 +28,13 @@
 
 .carousel-controls {
     cursor: pointer;
-    transform: rotate(90deg);
+    height: 35px;
+}
+
+.clicable:hover {
+    transform: scale(1.2);
+}
+
+.unclicable {
+    opacity: 0.5;
 }

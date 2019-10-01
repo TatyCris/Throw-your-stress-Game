@@ -2,41 +2,62 @@ import React, { Component } from 'react'
 import { TweenLite } from "gsap"
 import objectsDB from './objectsDb'
 import '../style/Carousel.css'
+import iconDown from '../icons/down-arrow.png'
+import iconUp from '../icons/up-arrow.png'
 
 export default class Carousel extends Component {
+    state = {
+        images: objectsDB,
+        nextControllerActive: true,
+        prevControllerActive: false
+    }
+
     itemsList = null
     imageRef = null
     itemsContainer = null
 
     images = objectsDB.map(image => {
         return image.img
-    })
-
-    state = {
-        currentImageIndex: 0,
-        images: objectsDB
-    }
+    })    
 
     animateCarousel = (control) => {
         let offset = null
-        const nSlides = 2
         const img = this.imageRef.getBoundingClientRect()
-        const items = this.itemsList.getBoundingClientRect()        
+        const items = this.itemsList.getBoundingClientRect()
+        const container = this.itemsContainer.getBoundingClientRect() 
+        const nSlides = Math.floor(container.height/img.height - 1)
 
         if (control === 'next') {
-            if (items.bottom === 686.1875) {
+            this.setState({
+                prevControllerActive: true
+            })
+            if (items.bottom === container.bottom + img.height) {
                 offset = "-=" + img.height
             } 
-            if (items.bottom > 686.1875) {
+            if (items.bottom > container.bottom + img.height) {
                 offset = "-=" + nSlides * img.height
+            }
+            if (items.bottom <= container.bottom + nSlides * img.height) { 
+                this.setState({
+                    nextControllerActive: false
+                })
             }
         }
         if (control === 'prev') {
-            if (items.top === 11.1875) {
+            this.setState({
+                nextControllerActive: true
+            })
+            
+            if (items.top === container.top - img.height) {
                 offset = "+=" + img.height
             }
-            if (items.top < 11.1875) {
+            if (items.top < container.top - img.height) {
                 offset = "+=" + nSlides * img.height
+            }
+            if (items.top >= container.top - nSlides * img.height) { 
+                this.setState({
+                    prevControllerActive: false
+                })
             }
         }
         if (offset) {
@@ -69,19 +90,19 @@ export default class Carousel extends Component {
                     />
                 </li>
             })}
-
         </ul>
     }
 
     render() {
-        // const index = this.state.currentImageIndex
+        const controllerNextActive = !this.state.nextControllerActive ? 'unclicable' : 'clicable'
+        const controllerPrevActive = !this.state.prevControllerActive ? 'unclicable' : 'clicable'
         return (
             <div className="carousel-container">
-                <div className="carousel-controls" onClick={this.prevSlide}>{'<'}</div>
+                <img className={`carousel-controls ${controllerPrevActive}`} src={iconUp} onClick={this.prevSlide} />
                 <div className="carousel-items-container" ref={div => this.itemsContainer = div}>
                     {this.renderImages()}
                 </div>
-                <div className="carousel-controls" onClick={this.nextSlide}>{'>'}</div>
+                <img className={`carousel-controls ${controllerNextActive}`} src={iconDown} onClick={this.nextSlide} />
             </div>
         )
     }
