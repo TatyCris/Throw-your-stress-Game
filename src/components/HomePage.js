@@ -32,9 +32,9 @@ export default class InitialPage extends Component {
 
 
     componentDidMount() {
-        const sizeIndex = this.randomNumber(0, 2)
+        // const sizeIndex = this.randomNumber(0, 2)
         // size = this.sizes[this.sizeIndex]
-        const speed = (3 - sizeIndex)
+        // const speed = (3 - sizeIndex)
 
         // for (let i = 0; i < 50; i++) {
         //     console.log('here', this.bubbles[i])
@@ -50,7 +50,7 @@ export default class InitialPage extends Component {
     }
 
     renderBubbles = () => {
-        const bubbles = []
+        // const bubbles = []
         // for (let i = 0; i < 50; i++) {
         //     const sizeIndex = this.randomNumber(0, 2)
         //     // const size = this.sizes[sizeIndex]
@@ -64,9 +64,9 @@ export default class InitialPage extends Component {
         return (<div>
             {() => {
                 for (let i = 0; i < 50; i++) {
-                    const sizeIndex = this.randomNumber(0, 2)
+                    // const sizeIndex = this.randomNumber(0, 2)
                     // const size = this.sizes[sizeIndex]
-                    const speed = (3 - sizeIndex)
+                    // const speed = (3 - sizeIndex)
 
                     this.bubblesRef[i] = React.createRef()
                     // bubbles[i] = React.createElement('div', { className: "bubble", ref: bubblesRef[i] })

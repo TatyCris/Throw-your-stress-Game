@@ -11,7 +11,7 @@ import crossIcon from '../images/cross-icon.png'
 import Modal from './Modal'
 import '../style/Game.css'
 
-class Test2Component extends Component {
+class Game extends Component {
     state = {
         selectedObject: '',
         hit: false,
@@ -285,4 +285,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { setScore, setTries, getGiphy })(Test2Component)
+export default connect(mapStateToProps, { setScore, setTries, getGiphy })(Game)
