@@ -92,11 +92,11 @@ export default class Carousel extends Component {
         const controllerPrevActive = !this.state.prevControllerActive ? 'unclicable' : 'clicable'
         return (
             <div className="carousel-container">
-                <img className={`carousel-controls ${controllerPrevActive}`} src={iconUp} onClick={this.prevSlide} />
+                <img className={`carousel-controls ${controllerPrevActive}`} src={iconUp} onClick={this.prevSlide} alt="prev" />
                 <div className="carousel-items-container" ref={div => this.itemsContainer = div}>
                     {this.renderImages()}
                 </div>
-                <img className={`carousel-controls ${controllerNextActive}`} src={iconDown} onClick={this.nextSlide} />
+                <img className={`carousel-controls ${controllerNextActive}`} src={iconDown} onClick={this.nextSlide} alt="next" />
             </div>
         )
     }
