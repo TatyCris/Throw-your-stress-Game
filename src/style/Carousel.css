@@ -10,6 +10,8 @@
     flex-direction: column;
     height: 405px;
     overflow: hidden;
+    background-color: rgba(30, 144, 255, 0.6);
+    border-radius: 4px;
 }
 
 .carousel-items-container>ul {
