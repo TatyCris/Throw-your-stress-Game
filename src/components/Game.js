@@ -16,7 +16,12 @@ class Test2Component extends Component {
         selectedObject: '',
         hit: false,
         play: true,
-        openModal: false
+        openModal: false,
+        modalTitle: '',
+        modalContent: '',
+        modalType: '',
+        modalCloseButton: true,
+        modalClose: false
     }
 
     tlObject = new TimelineLite({ paused: true })
@@ -71,14 +76,20 @@ class Test2Component extends Component {
         if ((prevProps.score !== this.props.score) && this.props.score >= 15) {
             if (this.props.score >= 15) {
                 setTimeout(() => {
-                    this.showModal()
+                    this.showModal('giphy', 'You win!!  No more stress!!', 'giphy', true)
                 }, 2000)
             }
         }
     }
 
-    showModal = () => {
-        this.setState({ openModal: true })
+    showModal = (type, title, content, button) => {
+        this.setState({
+            openModal: true,
+            modalType: type,
+            modalTitle: title,
+            modalContent: content,
+            modalCloseButton: button
+        })
     }
 
     hideModal = () => {
@@ -194,14 +205,25 @@ class Test2Component extends Component {
         </div>
     }
 
-    renderGiphy = () => {
-        return (
-            <img
-                src={this.props.giphy}
-                alt="giphy"
-                className="giphy"
-            />
-        )
+    renderModalContent = () => {
+        switch (this.state.modalContent) {
+            case 'giphy':
+                return (
+                    <img
+                        src={this.props.giphy}
+                        alt="giphy"
+                        className="giphy"
+                    />
+                )
+            case 'instruction':
+                return (
+                    <p>
+                        Click to choose what stresses you
+                    </p>
+                )
+            default:
+                break;
+        }
     }
 
     render() {
@@ -241,8 +263,15 @@ class Test2Component extends Component {
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
                 <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>
-                {/* {this.props.score >= 21 ? this.showModal() : null} */}
-                <Modal openModal={this.state.openModal} hideModal={this.hideModal} giphy={this.renderGiphy} />
+                <Modal
+                    openModal={this.state.openModal}
+                    hideModal={this.hideModal}
+                    title={this.state.modalTitle}
+                    content={this.renderModalContent}
+                    modalType={this.state.modalType}
+                    closeButton={this.state.modalCloseButton}
+                    close={this.state.modalClose}
+                />
             </div>
         )
     }

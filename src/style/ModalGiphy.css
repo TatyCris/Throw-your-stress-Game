@@ -1,4 +1,4 @@
-.modal {
+.modal.giphy {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,11 +8,12 @@
     display: block;
 }
 
-.modal h3 {
+.title.giphy {
     font-size: 30px;
+    color: black;
 }
 
-.modal-main {
+.modal-main.giphy {
     color: black;
     position: fixed;
     background: rgb(241, 176, 54);
@@ -24,46 +25,16 @@
     padding: 50px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
+.modal-main.giphy img {
+    max-height: 500px;
 }
 
-label {
-    margin-bottom: 10px;
-    text-align: left;
-    width: 100%;
-}
-
-input, textarea {
-    margin-bottom: 20px;
-    padding: 7px;
-}
-
-textarea {
-    height: 80px;
-}
-
-button {
+.close.giphy {
     font-size: 18px;
-    border-radius: 4px;
     margin: 20px 0;
-    background-color: white;
     border: 0px;
     cursor: pointer;
-    height: 40px;
-    width: 100%;
-    color: white;
     outline: none;
-    text-transform: uppercase;
-}
-
-button:hover {
-    background-color: #3963c7;
-}
-
-button.close {
     background-color: transparent;
     color: black;
     position: absolute;
@@ -74,6 +45,6 @@ button.close {
     font-weight: bold;
 }
 
-button.close:hover {
-    color: #969dac;
+button.giphy:hover {
+    color: #406dd6;
 }
