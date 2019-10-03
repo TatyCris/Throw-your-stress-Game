@@ -26,6 +26,12 @@
     padding: 5px;
     display: block;
     border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.carousel-items-container img:hover {
+    transform: scale(1.03);
 }
 
 .carousel-controls {
