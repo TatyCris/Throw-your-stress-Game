@@ -10,6 +10,7 @@ import hitImage from '../images/hit-pidgeon.png'
 import crossIcon from '../images/cross-icon.png'
 import Modal from './Modal'
 import '../style/Game.css'
+import pointer from '../icons/pointer.png'
 
 class Game extends Component {
     state = {
@@ -34,6 +35,8 @@ class Game extends Component {
 
     componentDidMount() {
         this.props.getGiphy()
+
+        this.showModal('instructions', '', 'instruction', false)
 
         const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
@@ -217,9 +220,10 @@ class Game extends Component {
                 )
             case 'instruction':
                 return (
-                    <p>
-                        Click to choose what stresses you
-                    </p>
+                    <div>
+                        <p>Click to choose what stresses you</p>
+                        <img src={pointer} alt="pointer" />
+                    </div>
                 )
             default:
                 break;
