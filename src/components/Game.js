@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
-import { addScore, setScore, setTries } from '../actions/game'
+import { addScore, setScore, addTries, setTries } from '../actions/game'
 import Carousel from './Carousel'
 import hitImage from '../images/hit-pidgeon.png'
 import ModalContainer from './ModalContainer'
@@ -78,6 +78,7 @@ class Game extends Component {
                 setTimeout(() => {
                     this.showModal('giphy', 'giphy', 'You win!!  No more stress!!', true)
                     this.props.setScore(0)
+                    this.props.setTries(0)
                 }, 2000)
             }
         }
@@ -118,7 +119,7 @@ class Game extends Component {
             this.tl2Object.play()
             this.tlObject.pause()
             this.whereIsTheObjectX()
-            this.props.setTries(1)
+            this.props.addTries(1)
             this.hideModal()
         }
         this.setState({
@@ -255,7 +256,11 @@ class Game extends Component {
                 <Carousel handleClick={this.handleObjectClick} />
                 <div className="end-buttons-container">
                     {this.showTutorialButton(this.state.showTutorial)}
-                    {/* <button className="end-buttons" onClick={this.hideTutorial}>Hide Tutorial</button> */}
+                    <button className="end-button"
+                        onClick={() => {
+                            this.props.setScore(0)
+                            this.props.setTries(0)
+                        }}>Restart</button>
                     <Link to={'/'}><button className="end-button" onClick={this.onClick}>MENU</button></Link>
                 </div>
                 <ModalContainer
@@ -279,4 +284,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { addScore, setScore, setTries })(Game)
+export default connect(mapStateToProps, { addScore, setScore, addTries, setTries })(Game)
