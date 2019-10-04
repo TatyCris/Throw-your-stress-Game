@@ -17,6 +17,7 @@ class Game extends Component {
         play: false,
         openModal: false,
         modalTitle: '',
+        modalId: '',
         modalType: '',
         modalCloseButton: true,
         modalClose: false
@@ -31,7 +32,7 @@ class Game extends Component {
     hitTarget = true
 
     componentDidMount() {
-        this.showModal('tutorial1', '', 'instruction', false)
+        this.showModal('tutorial1', 'tutorial', '', false)
 
         const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
@@ -74,18 +75,18 @@ class Game extends Component {
         if ((prevProps.score !== this.props.score) && this.props.score >= 15) {
             if (this.props.score >= 15) {
                 setTimeout(() => {
-                    this.showModal('giphy', 'You win!!  No more stress!!', 'giphy', true)
+                    this.showModal('giphy', 'giphy', 'You win!!  No more stress!!', true)
                 }, 2000)
             }
         }
     }
 
-    showModal = (type, title, content, button) => {
+    showModal = (id, type, title, button) => {
         this.setState({
             openModal: true,
+            modalId: id,
             modalType: type,
             modalTitle: title,
-            modalContent: content,
             modalCloseButton: button
         })
     }
@@ -106,13 +107,16 @@ class Game extends Component {
         this.setState({
             play: false
         })
+        this.hideModal()
     }
 
     hitComplete = () => {
-            this.tl2Object.seek(-3).reverse()
-            this.setState({
-                selectedObject: crossIcon,
-            })
+        this.tl2Object.seek(-3).reverse()
+        this.setState({
+            selectedObject: crossIcon,
+        })
+        this.showModal('tutorial1', 'tutorial', '', false)
+
     }
 
     whereIsTheObjectX = () => {
@@ -186,6 +190,7 @@ class Game extends Component {
         })
         this.hideModal()
         this.tlObject.play()
+        this.showModal('tutorial2', 'tutorial', '', false)
     }
 
     render() {
@@ -226,7 +231,8 @@ class Game extends Component {
                     openModal={this.state.openModal}
                     hideModal={this.hideModal}
                     title={this.state.modalTitle}
-                    modalType={this.state.modalType}
+                    id={this.state.modalId}
+                    type={this.state.modalType}
                     closeButton={this.state.modalCloseButton}
                     close={this.state.modalClose}
                 />

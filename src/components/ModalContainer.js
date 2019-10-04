@@ -10,7 +10,7 @@ export class ModalContainer extends Component {
     }
 
     renderModalContent = () => {
-        switch (this.props.modalType) {
+        switch (this.props.id) {
             case 'giphy':
                 return (
                     <img
@@ -21,9 +21,16 @@ export class ModalContainer extends Component {
                 )
             case 'tutorial1':
                 return (
-                    <div>
+                    <div className="tutorial-container">
                         <p>Click to choose what stresses you</p>
-                        <Pointer />
+                        <Pointer id={this.props.id} />
+                    </div>
+                )
+            case 'tutorial2':
+                return (
+                    <div className="tutorial-container">
+                        <Pointer id={this.props.id} />
+                        <p>Click to throw it away</p>
                     </div>
                 )
             default:

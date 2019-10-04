@@ -10,21 +10,41 @@ class PointerAnimation extends Component {
 
     componentDidMount() {
         this.pointerTween
-            .to(this.pointerContainer, 0.4, {
-                x: -10,
-                y: 10,
-                repeatDelay: 0,
-                repeat: -1,
-                yoyo: true
-            })
+            .to(this.pointerContainer, 0.4, this.renderAnimation())
             .play()
+    }
+
+    renderAnimation = () => {
+        switch (this.props.id) {
+            case 'tutorial1':
+                return (
+                    {
+                        x: -10,
+                        y: 10,
+                        repeatDelay: 0,
+                        repeat: -1,
+                        yoyo: true
+                    }
+                )
+            case 'tutorial2':
+                return (
+                    {
+                        x: -20,
+                        repeatDelay: 0,
+                        repeat: -1,
+                        yoyo: true
+                    }
+                )
+            default:
+                break;
+        }
     }
 
     render() {
         return <img
             src={pointer}
             alt="pointer"
-            className="pointer"
+            className={`pointer ${this.props.id}`}
             ref={img => this.pointerContainer = img}
         />
     }

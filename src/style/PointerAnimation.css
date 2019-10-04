@@ -1,5 +1,11 @@
-.pointer {
+.pointer.tutorial1{
     width: 50px;
     transform: rotate(55deg) scale(1, -1);
+    margin-right: 40px;
+}
+
+.pointer.tutorial2{
+    width: 50px;
+    transform: rotate(90deg) scale(1, -1);
     margin-right: 40px;
 }
