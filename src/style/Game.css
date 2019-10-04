@@ -64,15 +64,17 @@
     min-height: 45px;
 }
 
-.controls button:hover,
-.controls button:active,
-.controls button:focus {
+.controls .throw:hover,
+.controls .throw:active,
+.controls .throw:focus {
 	background-color: #88ce02;
 }
 
 .controls .disabled {
     cursor: initial;
     outline: none;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 

@@ -180,7 +180,6 @@ class Game extends Component {
                     y: -500,
                     onComplete: () => this.hitComplete()
                 })
-                
         }
     }
 
