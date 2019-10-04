@@ -40,7 +40,6 @@
 .basket-object {
     height: 80px;
     width: 80px;
-    cursor: pointer;
     margin: 0 auto;
     transform: matrix(1, 0, 0, 1, 0, 0);
     background-position: center;
@@ -62,6 +61,7 @@
     border-radius: 7px;
     margin: 20px 7px;
     width: 160px;
+    min-height: 45px;
 }
 
 .controls button:hover,
@@ -69,6 +69,12 @@
 .controls button:focus {
 	background-color: #88ce02;
 }
+
+.controls .disabled {
+    cursor: initial;
+    outline: none;
+}
+
 
 .go-back {
     cursor: pointer;

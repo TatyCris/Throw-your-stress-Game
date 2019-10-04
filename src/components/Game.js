@@ -94,12 +94,6 @@ class Game extends Component {
         this.setState({ openModal: false })
     }
 
-    playGame = () => {
-        if (this.state.play) {
-            this.tlObject.play()
-        }
-    }
-
     throw = () => {
         CSSPlugin.useSVGTransformAttr = true;
 
@@ -108,23 +102,21 @@ class Game extends Component {
             this.tlObject.pause()
             this.whereIsTheObjectX()
             this.props.setTries(1)
-            this.setState({
-                play: false
-            })
+            // this.tl2Object.seek(-3).reverse()
+            // this.tlObject.restart()
+            // this.setState({
+            //     selectedObject: crossIcon
+            // })
         }
     }
 
-    tryAgain = () => {
-        if (!this.state.play) {
+    hitComplete = () => {
             this.tl2Object.seek(-3).reverse()
-            this.tlObject.restart()
+            // this.tlObject.restart()
             this.setState({
-                play: true
+                selectedObject: crossIcon,
+                play: false
             })
-            this.setState({
-                selectedObject: crossIcon
-            })
-        }
     }
 
     whereIsTheObjectX = () => {
@@ -185,8 +177,10 @@ class Game extends Component {
             this.tl2Object
                 .to(this.object, 2, {
                     x: 300,
-                    y: -500
+                    y: -500,
+                    onComplete: () => this.hitComplete()
                 })
+                
         }
     }
 
@@ -196,13 +190,7 @@ class Game extends Component {
             play: true,
         })
         this.hideModal()
-    }
-
-    renderHit = () => {
-        return <div
-            className={this.state.hit ? 'hit active' : 'hit'}
-            ref={div => this.hitRef = div}>
-        </div>
+        this.tlObject.play()
     }
 
     render() {
@@ -212,13 +200,10 @@ class Game extends Component {
                     <div className="controls">
                         {this.state.play ?
                             <button
-                                className="play"
-                                onClick={this.playGame()}
-                            >Play</button> :
-                            <button
-                                className="try-again"
-                                onClick={this.tryAgain}
-                            >Try again</button>
+                                className="throw"
+                                onClick={this.throw}
+                            >Throw</button> :
+                            <button className="disabled"></button>
                         }
                     </div>
                     <div className="target">
@@ -230,7 +215,7 @@ class Game extends Component {
                         />
                     </div>
                 </div>
-                <div className="bottom" onClick={this.throw}>
+                <div className="bottom">
                     <div
                         style={{
                             backgroundImage: `url('${this.state.selectedObject || crossIcon}')`
