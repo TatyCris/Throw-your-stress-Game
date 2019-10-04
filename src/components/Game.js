@@ -102,20 +102,16 @@ class Game extends Component {
             this.tlObject.pause()
             this.whereIsTheObjectX()
             this.props.setTries(1)
-            // this.tl2Object.seek(-3).reverse()
-            // this.tlObject.restart()
-            // this.setState({
-            //     selectedObject: crossIcon
-            // })
         }
+        this.setState({
+            play: false
+        })
     }
 
     hitComplete = () => {
             this.tl2Object.seek(-3).reverse()
-            // this.tlObject.restart()
             this.setState({
                 selectedObject: crossIcon,
-                play: false
             })
     }
 
