@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
-import { setScore, setTries } from '../actions/game'
+import { addScore, setScore, setTries } from '../actions/game'
 import Carousel from './Carousel'
 import hitImage from '../images/hit-pidgeon.png'
 import ModalContainer from './ModalContainer'
@@ -77,6 +77,7 @@ class Game extends Component {
             if (this.props.score >= 15) {
                 setTimeout(() => {
                     this.showModal('giphy', 'giphy', 'You win!!  No more stress!!', true)
+                    this.props.setScore(0)
                 }, 2000)
             }
         }
@@ -176,35 +177,35 @@ class Game extends Component {
 
         if (objectCenter === targetCenter) {
             this.hitTarget = true;
-            return this.props.setScore(7)
+            return this.props.addScore(7)
         }
         if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
             this.hitTarget = true;
-            return this.props.setScore(6)
+            return this.props.addScore(6)
         }
         if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
             this.hitTarget = true;
-            return this.props.setScore(5)
+            return this.props.addScore(5)
         }
         if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
             this.hitTarget = true;
-            return this.props.setScore(4)
+            return this.props.addScore(4)
         }
         if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
             this.hitTarget = true;
-            return this.props.setScore(3)
+            return this.props.addScore(3)
         }
         if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
             this.hitTarget = true;
-            return this.props.setScore(2)
+            return this.props.addScore(2)
         }
         if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
             this.hitTarget = true;
-            return this.props.setScore(1)
+            return this.props.addScore(1)
         }
         else {
-            // this.props.setScore(-1)
-            return this.props.setScore(0)
+            // this.props.addScore(-1)
+            return this.props.addScore(0)
         }
     }
 
@@ -278,4 +279,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { setScore, setTries })(Game)
+export default connect(mapStateToProps, { addScore, setScore, setTries })(Game)

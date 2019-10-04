@@ -1,6 +1,14 @@
+export const ADD_SCORE = 'ADD_SCORE'
 export const SET_SCORE = 'SET_SCORE'
 export const SET_TRIES = 'SET_TRIES'
 export const GET_OBJECTS = 'SET_TRIES'
+
+export const addScore = (value) => {
+    return {
+        type: ADD_SCORE,
+        payload: value
+    }
+}
 
 export const setScore = (value) => {
     return {
