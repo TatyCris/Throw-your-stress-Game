@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
 import Score from './Score'
 import { setScore, setTries } from '../actions/game'
-import { getGiphy } from '../actions/giphy'
 import Carousel from './Carousel'
 import hitImage from '../images/hit-pidgeon.png'
+import ModalContainer from './ModalContainer'
 import crossIcon from '../images/cross-icon.png'
-import Modal from './Modal'
 import '../style/Game.css'
-import pointer from '../icons/pointer.png'
 
 class Game extends Component {
     state = {
@@ -19,7 +17,6 @@ class Game extends Component {
         play: true,
         openModal: false,
         modalTitle: '',
-        modalContent: '',
         modalType: '',
         modalCloseButton: true,
         modalClose: false
@@ -34,8 +31,6 @@ class Game extends Component {
     hitTarget = true
 
     componentDidMount() {
-        this.props.getGiphy()
-
         this.showModal('instructions', '', 'instruction', false)
 
         const target = this.target.getBoundingClientRect()
@@ -208,28 +203,6 @@ class Game extends Component {
         </div>
     }
 
-    renderModalContent = () => {
-        switch (this.state.modalContent) {
-            case 'giphy':
-                return (
-                    <img
-                        src={this.props.giphy}
-                        alt="giphy"
-                        className="giphy"
-                    />
-                )
-            case 'instruction':
-                return (
-                    <div>
-                        <p>Click to choose what stresses you</p>
-                        <img src={pointer} alt="pointer" />
-                    </div>
-                )
-            default:
-                break;
-        }
-    }
-
     render() {
         return (
             <div className="container">
@@ -267,11 +240,10 @@ class Game extends Component {
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
                 <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>
-                <Modal
+                <ModalContainer
                     openModal={this.state.openModal}
                     hideModal={this.hideModal}
                     title={this.state.modalTitle}
-                    content={this.renderModalContent}
                     modalType={this.state.modalType}
                     closeButton={this.state.modalCloseButton}
                     close={this.state.modalClose}
@@ -285,8 +257,7 @@ const mapStateToProps = (state) => {
     return {
         score: state.score,
         tries: state.tries,
-        giphy: state.giphy
     }
 }
 
-export default connect(mapStateToProps, { setScore, setTries, getGiphy })(Game)
+export default connect(mapStateToProps, { setScore, setTries })(Game)
