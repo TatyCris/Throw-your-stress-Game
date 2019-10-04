@@ -15,6 +15,7 @@ class Game extends Component {
         selectedObject: '',
         hit: false,
         play: false,
+        showTutorial: true,
         openModal: false,
         modalTitle: '',
         modalId: '',
@@ -82,13 +83,27 @@ class Game extends Component {
     }
 
     showModal = (id, type, title, button) => {
-        this.setState({
-            openModal: true,
-            modalId: id,
-            modalType: type,
-            modalTitle: title,
-            modalCloseButton: button
-        })
+        if (type === 'tutorial') {
+            if (this.state.showTutorial) {
+                this.setState({
+                    openModal: true,
+                    modalId: id,
+                    modalType: type,
+                    modalTitle: title,
+                    modalCloseButton: button
+                })
+            } else {
+                return null
+            }
+        } else {
+            this.setState({
+                openModal: true,
+                modalId: id,
+                modalType: type,
+                modalTitle: title,
+                modalCloseButton: button
+            })
+        }
     }
 
     hideModal = () => {
@@ -97,7 +112,7 @@ class Game extends Component {
 
     throw = () => {
         CSSPlugin.useSVGTransformAttr = true;
-        
+
         if (this.state.play) {
             this.tl2Object.play()
             this.tlObject.pause()
@@ -109,65 +124,6 @@ class Game extends Component {
             play: false
         })
         this.showModal('tutorial3', 'tutorial', '', false)
-    }
-
-    hitComplete = () => {
-        this.tl2Object.seek(-3).reverse()
-        this.setState({
-            selectedObject: crossIcon,
-        })
-        this.showModal('tutorial1', 'tutorial', '', false)
-
-    }
-
-    whereIsTheObjectX = () => {
-        const target = this.target.getBoundingClientRect()
-        const object = this.object.getBoundingClientRect()
-        const objectCenter = object.x + object.width / 2
-        const targetCenter = target.x + target.width / 2
-        const nRing = 6
-        const ring = target.width / (nRing * 2)
-
-        if (objectCenter === targetCenter) {
-            this.props.setScore(7)
-            this.hitTarget = true;
-            return console.log('perfe')
-        }
-        if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
-            this.props.setScore(6)
-            this.hitTarget = true;
-            return console.log('primero')
-        }
-        if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
-            this.props.setScore(5)
-            this.hitTarget = true;
-            return console.log('segundo')
-        }
-        if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
-            this.props.setScore(4)
-            this.hitTarget = true;
-            return console.log('tercero')
-        }
-        if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
-            this.props.setScore(3)
-            this.hitTarget = true;
-            return console.log('quarto')
-        }
-        if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
-            this.props.setScore(2)
-            this.hitTarget = true;
-            return console.log('quinto')
-        }
-        if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
-            this.props.setScore(1)
-            this.hitTarget = true;
-            return console.log('sexto')
-        }
-        else {
-            this.props.setScore(0)
-            // this.props.setScore(-1)
-            return console.log('fuera!')
-        }
     }
 
     animateHit = () => {
@@ -184,6 +140,74 @@ class Game extends Component {
         }
     }
 
+    hitComplete = () => {
+        this.tl2Object.seek(-3).reverse()
+        this.setState({
+            selectedObject: crossIcon,
+        })
+        this.showModal('tutorial1', 'tutorial', '', false)
+    }
+
+    showTutorialButton = (_boolean) => {
+        if (_boolean) {
+            return <button className="end-button" onClick={() => {
+                this.setState({
+                    showTutorial: false,
+                    openModal: false
+                })
+            }}>Hide Tutorial</button>
+        } else {
+            return <button className="end-button" onClick={() => {
+                this.setState({
+                    showTutorial: true,
+                    openModal: true
+                })
+            }}>Show Tutorial</button>
+        }
+    }
+
+    whereIsTheObjectX = () => {
+        const target = this.target.getBoundingClientRect()
+        const object = this.object.getBoundingClientRect()
+        const objectCenter = object.x + object.width / 2
+        const targetCenter = target.x + target.width / 2
+        const nRing = 6
+        const ring = target.width / (nRing * 2)
+
+        if (objectCenter === targetCenter) {
+            this.hitTarget = true;
+            return this.props.setScore(7)
+        }
+        if (objectCenter > targetCenter - ring && objectCenter < targetCenter + ring) {
+            this.hitTarget = true;
+            return this.props.setScore(6)
+        }
+        if (objectCenter > targetCenter - (2 * ring) && objectCenter < targetCenter + (2 * ring)) {
+            this.hitTarget = true;
+            return this.props.setScore(5)
+        }
+        if (objectCenter > targetCenter - (3 * ring) && objectCenter < targetCenter + (3 * ring)) {
+            this.hitTarget = true;
+            return this.props.setScore(4)
+        }
+        if (objectCenter > targetCenter - (4 * ring) && objectCenter < targetCenter + (4 * ring)) {
+            this.hitTarget = true;
+            return this.props.setScore(3)
+        }
+        if (objectCenter > targetCenter - (5 * ring) && objectCenter < targetCenter + (5 * ring)) {
+            this.hitTarget = true;
+            return this.props.setScore(2)
+        }
+        if (objectCenter > targetCenter - (6 * ring) && objectCenter < targetCenter + (6 * ring)) {
+            this.hitTarget = true;
+            return this.props.setScore(1)
+        }
+        else {
+            // this.props.setScore(-1)
+            return this.props.setScore(0)
+        }
+    }
+
     handleObjectClick = (img) => {
         this.setState({
             selectedObject: img,
@@ -195,6 +219,7 @@ class Game extends Component {
     }
 
     render() {
+
         return (
             <div className="container">
                 <div className="top">
@@ -227,7 +252,11 @@ class Game extends Component {
                     <Score score={this.props.score} />
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
-                <Link to={'/'}><button className="go-back" onClick={this.onClick}>Go back</button></Link>
+                <div className="end-buttons-container">
+                    {this.showTutorialButton(this.state.showTutorial)}
+                    {/* <button className="end-buttons" onClick={this.hideTutorial}>Hide Tutorial</button> */}
+                    <Link to={'/'}><button className="end-button" onClick={this.onClick}>MENU</button></Link>
+                </div>
                 <ModalContainer
                     openModal={this.state.openModal}
                     hideModal={this.hideModal}

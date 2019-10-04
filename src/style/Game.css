@@ -1,18 +1,3 @@
-.container {
-    height: 650px;
-    width: 100%;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-}
-
-.container a {
-    display: block;
-    position: absolute;
-    right: 5%;
-    bottom: 0%;
-}
-
 .target {
     height: 200px;
     position: relative;
@@ -77,19 +62,6 @@
     pointer-events: none;
 }
 
-
-.go-back {
-    cursor: pointer;
-    background-color: #298b8b;
-    color: #fff;
-    padding: 10px;
-    min-width: 120px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 7px;
-    margin: 20px 7px;
-}
-
 .go-back:hover,
 .go-back:active,
 .go-back:focus {
@@ -99,4 +71,31 @@
 .container .bottom {
     width: 400px;
     margin: 0 auto;
+}
+
+.container {
+    height: 650px;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.end-buttons-container {
+    display: block;
+    position: absolute;
+    right: 5%;
+    bottom: 0%;
+}
+
+.end-button {
+    cursor: pointer;
+    background-color: #298b8b;
+    color: #fff;
+    padding: 10px;
+    min-width: 120px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    margin: 20px 7px;
 }
