@@ -33,6 +33,13 @@ export class ModalContainer extends Component {
                         <p>Click to throw it away</p>
                     </div>
                 )
+            case 'tutorial3':
+                return (
+                    <div className="tutorial-container">
+                        <p>Check your points here!</p>
+                        <Pointer id={this.props.id} />
+                    </div>
+                )
             default:
                 break;
         }

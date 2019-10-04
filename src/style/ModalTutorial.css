@@ -25,3 +25,12 @@
     left: 60%;
     width: 300px;
 }
+
+.modal-main.tutorial3 .tutorial-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 60%;
+    width: 160px;
+}

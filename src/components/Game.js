@@ -97,17 +97,18 @@ class Game extends Component {
 
     throw = () => {
         CSSPlugin.useSVGTransformAttr = true;
-
+        
         if (this.state.play) {
             this.tl2Object.play()
             this.tlObject.pause()
             this.whereIsTheObjectX()
             this.props.setTries(1)
+            this.hideModal()
         }
         this.setState({
             play: false
         })
-        this.hideModal()
+        this.showModal('tutorial3', 'tutorial', '', false)
     }
 
     hitComplete = () => {

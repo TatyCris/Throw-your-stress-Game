@@ -35,6 +35,16 @@ class PointerAnimation extends Component {
                         yoyo: true
                     }
                 )
+            case 'tutorial3':
+                return (
+                    {
+                        x: -10,
+                        y: 10,
+                        repeatDelay: 0,
+                        repeat: -1,
+                        yoyo: true
+                    }
+                )
             default:
                 break;
         }
