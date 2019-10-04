@@ -14,7 +14,7 @@ class Game extends Component {
     state = {
         selectedObject: '',
         hit: false,
-        play: true,
+        play: false,
         openModal: false,
         modalTitle: '',
         modalType: '',
@@ -192,8 +192,10 @@ class Game extends Component {
 
     handleObjectClick = (img) => {
         this.setState({
-            selectedObject: img
+            selectedObject: img,
+            play: true,
         })
+        this.hideModal()
     }
 
     renderHit = () => {
