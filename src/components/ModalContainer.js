@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Modal from './Modal'
 import { getGiphy } from '../actions/giphy'
-import pointer from '../icons/pointer.png'
+import Pointer from './PointerAnimation'
 
 export class ModalContainer extends Component {
     componentDidMount() {
@@ -19,11 +19,11 @@ export class ModalContainer extends Component {
                         className="giphy"
                     />
                 )
-            case 'instructions':
+            case 'tutorial1':
                 return (
                     <div>
                         <p>Click to choose what stresses you</p>
-                        <img src={pointer} alt="pointer" />
+                        <Pointer />
                     </div>
                 )
             default:

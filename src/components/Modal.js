@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../style/ModalGiphy.css'
-import '../style/ModalInstructions1.css'
+import '../style/ModalTutorial1.css'
 
 export default class Modal extends Component {
 

@@ -1,4 +1,4 @@
-.modal.instructions {
+.modal.tutorial1 {
     position: fixed;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     display: block;
 }
 
-.modal-main.instructions {
+.modal-main.tutorial1 {
     color: black;
     position: fixed;
     top: 30%;
@@ -18,13 +18,7 @@
     width: 150px;
 }
 
-.modal-main.instructions img {
-    width: 50px;
-    transform: rotate(55deg) scale(1, -1);
-    margin-right: 40px;
-}
-
-.modal-main.instructions p {
+.modal-main.tutorial1 p {
     background: rgb(241, 176, 54);
     padding: 10px;
     width: 160px;

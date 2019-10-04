@@ -14,4 +14,4 @@ export default class Instruction extends Component {
             </div >
         )
     }
-}
+};

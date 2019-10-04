@@ -31,7 +31,7 @@ class Game extends Component {
     hitTarget = true
 
     componentDidMount() {
-        this.showModal('instructions', '', 'instruction', false)
+        this.showModal('tutorial1', '', 'instruction', false)
 
         const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
