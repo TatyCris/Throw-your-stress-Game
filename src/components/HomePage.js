@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import { TimelineMax } from 'gsap'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 import '../style/HomePage.css'
 
 export default class InitialPage extends Component {
@@ -89,20 +90,12 @@ export default class InitialPage extends Component {
 
     }
 
-    onClick = () => {
-        return (
-            <Link to={'/instructions'}>
-            </Link>
-        )
-    }
-
     render() {
         return (
             <div className="buttons-container" ref={div => this.screen = div}>
                 <h1 className="title">Throw Your Stress</h1>
-                {this.renderBubbles()}
-                <Link to={'/game'}><button className="button" onClick={this.onClick}>PLAY</button></Link>
-                <Link to={'/instructions'}><button className="button" onClick={this.onClick}>HOW TO PLAY</button></Link>
+                <Link to={'/game'}><Button type="homePage-button" title="play" /></Link>
+                <Link to={'/instructions'}><Button type="homePage-button" title="how to play" /></Link>
             </div>
         )
     }

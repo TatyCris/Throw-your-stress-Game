@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 import '../style/Instructions.css'
 
 export default class Instruction extends Component {
@@ -10,7 +11,7 @@ export default class Instruction extends Component {
                 <p>You will have to select the items that cause you stress and throw them against the target, the closer to the center you hit, the higher score you get.</p>
                 <p>By the time you reach your high score, your stress will be gone and you will get a reward for it!</p>
                 <p className="green-text">Good luck!!</p>
-                <Link to={'/'}><button className="button" onClick={this.onClick}>Go back</button></Link>
+                <Link to={'/'}><Button type="instructions" title="go back" /></Link>
             </div >
         )
     }

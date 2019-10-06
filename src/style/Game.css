@@ -36,38 +36,6 @@
     color: black;
 }
 
-.controls button {
-    cursor: pointer;
-    background-color: #bf0a53;
-    color: #fff;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 7px;
-    margin: 20px 7px;
-    width: 160px;
-    min-height: 45px;
-}
-
-.controls .throw:hover,
-.controls .throw:active,
-.controls .throw:focus {
-	background-color: #88ce02;
-}
-
-.controls .disabled {
-    cursor: initial;
-    outline: none;
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.go-back:hover,
-.go-back:active,
-.go-back:focus {
-	background-color: #9e3484;
-}
-
 .container .bottom {
     width: 400px;
     margin: 0 auto;
@@ -86,16 +54,4 @@
     position: absolute;
     right: 5%;
     bottom: 0%;
-}
-
-.end-button {
-    cursor: pointer;
-    background-color: #298b8b;
-    color: #fff;
-    padding: 10px;
-    min-width: 120px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 7px;
-    margin: 20px 7px;
 }

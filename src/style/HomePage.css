@@ -26,24 +26,6 @@
     flex-direction: column;
 }
 
-.button {
-    cursor: pointer;
-    background-color: #bf0a53;
-    color: #fff;
-    padding: 10px;
-    min-width: 120px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 7px;
-    margin: 20px 7px;
-}
-
-.button:hover,
-.button:active,
-.button:focus {
-	background-color: #88ce02;
-}
-
 .title {
     color: #7ADD20;
 }

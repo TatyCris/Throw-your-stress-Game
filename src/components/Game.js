@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TimelineLite, Power0, CSSPlugin, Back } from "gsap"
-import Score from './Score'
 import { addScore, setScore, addTries, setTries } from '../actions/game'
+import Score from './Score'
+import Button from './Button'
 import Carousel from './Carousel'
-import hitImage from '../images/hit-pidgeon.png'
 import ModalContainer from './ModalContainer'
+import hitImage from '../images/hit-pidgeon.png'
 import crossIcon from '../images/cross-icon.png'
 import '../style/Game.css'
 
@@ -150,24 +151,6 @@ class Game extends Component {
         this.showModal('tutorial1', 'tutorial', '', false)
     }
 
-    showTutorialButton = (_boolean) => {
-        if (_boolean) {
-            return <button className="end-button" onClick={() => {
-                this.setState({
-                    showTutorial: false,
-                    openModal: false
-                })
-            }}>Hide Tutorial</button>
-        } else {
-            return <button className="end-button" onClick={() => {
-                this.setState({
-                    showTutorial: true,
-                    openModal: true
-                })
-            }}>Show Tutorial</button>
-        }
-    }
-
     whereIsTheObjectX = () => {
         const target = this.target.getBoundingClientRect()
         const object = this.object.getBoundingClientRect()
@@ -220,20 +203,24 @@ class Game extends Component {
         this.showModal('tutorial2', 'tutorial', '', false)
     }
 
+    handlerRestartButton = () => {
+        this.props.setScore(0)
+        this.props.setTries(0)
+    }
+
+    handlerTutorialButton = () => {
+        this.setState({
+            showTutorial: !this.state.showTutorial,
+            openModal: !this.state.showTutorial
+        })
+    }
+
     render() {
 
         return (
             <div className="container">
                 <div className="top">
-                    <div className="controls">
-                        {this.state.play ?
-                            <button
-                                className="throw"
-                                onClick={this.throw}
-                            >Throw</button> :
-                            <button className="disabled"></button>
-                        }
-                    </div>
+                    {this.state.play && <Button type="throw-button" onclick={this.throw} title="Throw" />}
                     <div className="target">
                         <img
                             src="https://www.playsport.net/sites/playsport.ophea.net/files/ophea-files/icons/ophea-playsport-icons_target-games.png"
@@ -255,13 +242,9 @@ class Game extends Component {
                 </div>
                 <Carousel handleClick={this.handleObjectClick} />
                 <div className="end-buttons-container">
-                    {this.showTutorialButton(this.state.showTutorial)}
-                    <button className="end-button"
-                        onClick={() => {
-                            this.props.setScore(0)
-                            this.props.setTries(0)
-                        }}>Restart</button>
-                    <Link to={'/'}><button className="end-button" onClick={this.onClick}>MENU</button></Link>
+                    <Button type="end-button" onclick={this.handlerTutorialButton} title={this.state.showTutorial ? "Hide Tutorial" : "Show utorial"} />
+                    <Button type="end-button" onclick={this.handlerRestartButton} title="Restart" />
+                    <Link to={'/'}><Button type="end-button" title="Back to Menu" /></Link>
                 </div>
                 <ModalContainer
                     openModal={this.state.openModal}

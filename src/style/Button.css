@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+.button {
+    cursor: pointer;
+    min-width: 160px;
+    background-color: #37a8ff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 28px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 100px;
+    padding: 8px 20px;
+    border: none;
+    margin: 20px 7px;
+    transition: 300ms all cubic-bezier(.4,0,.2,1);
+}
+
+.button:hover {
+    background-color: #37a8ff4d;
+    box-shadow: 0 12px 24px -6px rgba(55,118,255,.2);
+    transform: translateY(-1px);
+}
